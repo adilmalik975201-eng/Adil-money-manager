@@ -1,0 +1,3530 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ADIL USMANI | Money Manager</title>
+
+<style>
+
+*{
+    box-sizing:border-box;
+    margin:0;
+    padding:0;
+    font-family:Arial,sans-serif;
+}
+
+body{
+    background:#f4f6fb;
+    color:#334967;
+    min-height:100vh;
+    transition:.3s;
+}
+
+body.dark{
+    background:#111827;
+    color:#f3f4f6;
+}
+
+.container{
+    width:95%;
+    max-width:1250px;
+    margin:auto;
+    padding:25px 0 50px;
+}
+
+/* HEADER */
+
+.header{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    gap:15px;
+    margin-bottom:25px;
+}
+
+.logo{
+    font-size:30px;
+    font-weight:800;
+}
+
+.logo span{
+    color:#4f46e5;
+}
+
+.founder{
+    margin-top:6px;
+    font-size:13px;
+    font-weight:bold;
+    color:#6b7280;
+    letter-spacing:1px;
+}
+
+.dark .founder{
+    color:#9ca3af;
+}
+
+.header-buttons{
+    display:flex;
+    gap:10px;
+    flex-wrap:wrap;
+}
+
+.small-btn{
+    border:0;
+    padding:12px 16px;
+    border-radius:12px;
+    cursor:pointer;
+    background:#fff;
+    box-shadow:0 3px 12px #00000012;
+    font-weight:bold;
+}
+
+.dark .small-btn{
+    background:#1f2937;
+    color:white;
+}
+
+/* DASHBOARD */
+
+.dashboard{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:18px;
+    margin-bottom:25px;
+}
+
+.card{
+    background:white;
+    border-radius:20px;
+    padding:22px;
+    box-shadow:0 5px 20px #00000010;
+}
+
+.dark .card{
+    background:#1f2937;
+}
+
+.card-title{
+    font-size:15px;
+    color:#6b7280;
+    margin-bottom:10px;
+}
+
+.dark .card-title{
+    color:#9ca3af;
+}
+
+.card-value{
+    font-size:29px;
+    font-weight:800;
+}
+
+.balance-card{
+    grid-column:span 3;
+    background:linear-gradient(135deg,#111827,#374151);
+    color:white;
+}
+
+.balance-card .card-title{
+    color:#d1d5db;
+}
+
+.balance-value{
+    font-size:42px;
+}
+
+/* ACTION BUTTONS */
+
+.actions{
+    display:grid;
+    grid-template-columns:repeat(5,1fr);
+    gap:18px;
+    margin-bottom:30px;
+}
+
+.action-btn{
+    min-height:105px;
+    border:0;
+    border-radius:20px;
+    color:white;
+    font-size:19px;
+    font-weight:800;
+    cursor:pointer;
+    box-shadow:0 7px 18px #00000020;
+    transition:.2s;
+}
+
+.action-btn:hover{
+    transform:translateY(-4px);
+}
+
+.income{
+    background:#16a34a;
+}
+
+.expense{
+    background:#dc2626;
+}
+
+.saving{
+    background:#9333ea;
+}
+
+.udhaar{
+    background:#2563eb;
+}
+
+.history-btn{
+    background:#111827;
+}
+
+.dark .history-btn{
+    background:#4b5563;
+}
+
+/* SECTION */
+
+.section{
+    background:white;
+    border-radius:20px;
+    padding:22px;
+    margin-bottom:25px;
+    box-shadow:0 5px 20px #00000010;
+}
+
+.dark .section{
+    background:#1f2937;
+}
+
+/* HISTORY PAGE */
+
+.history-page{
+    position:fixed;
+    inset:0;
+    z-index:4000;
+    background:#f4f6fb;
+    display:none;
+    overflow-y:auto;
+    padding:25px 0 50px;
+}
+
+.history-page.show{
+    display:block;
+}
+
+.dark .history-page{
+    background:#111827;
+}
+
+.history-page-container{
+    width:95%;
+    max-width:1250px;
+    margin:auto;
+}
+
+.history-page-header{
+    display:flex;
+    align-items:center;
+    gap:15px;
+    margin-bottom:25px;
+}
+
+.back-btn{
+    border:0;
+    padding:12px 18px;
+    border-radius:12px;
+    background:#111827;
+    color:white;
+    font-weight:bold;
+    cursor:pointer;
+    box-shadow:0 3px 12px #00000020;
+}
+
+.dark .back-btn{
+    background:#374151;
+}
+
+.history-page-title{
+    font-size:28px;
+    font-weight:800;
+}
+
+.history-page-subtitle{
+    color:#6b7280;
+    margin-top:5px;
+    font-size:14px;
+}
+
+.dark .history-page-subtitle{
+    color:#9ca3af;
+}
+
+.history-stat-grid{
+    display:grid;
+    grid-template-columns:repeat(6,1fr);
+    gap:15px;
+    margin-bottom:20px;
+}
+
+.history-stat{
+    background:white;
+    border-radius:18px;
+    padding:18px;
+    box-shadow:0 5px 20px #00000010;
+}
+
+.dark .history-stat{
+    background:#1f2937;
+}
+
+.history-stat-title{
+    font-size:13px;
+    color:#6b7280;
+}
+
+.dark .history-stat-title{
+    color:#9ca3af;
+}
+
+.history-stat-value{
+    font-size:23px;
+    font-weight:800;
+    margin-top:7px;
+}
+
+/* HISTORY SECTION */
+
+.history-section{
+    background:white;
+    border-radius:20px;
+    padding:22px;
+    box-shadow:0 5px 20px #00000010;
+}
+
+.dark .history-section{
+    background:#1f2937;
+}
+
+/* CONTROLS */
+
+.controls{
+    display:flex;
+    gap:12px;
+    flex-wrap:wrap;
+    margin-top:15px;
+}
+
+input,select{
+    padding:13px;
+    border:1px solid #d1d5db;
+    border-radius:10px;
+    outline:none;
+    background:white;
+    color:#111827;
+}
+
+.dark input,
+.dark select{
+    background:#111827;
+    color:white;
+    border-color:#374151;
+}
+
+.search{
+    flex:1;
+    min-width:220px;
+}
+
+/* TABLE */
+
+.table-wrap{
+    overflow-x:auto;
+}
+
+table{
+    width:100%;
+    border-collapse:collapse;
+    margin-top:18px;
+}
+
+th,td{
+    padding:14px 10px;
+    border-bottom:1px solid #e5e7eb;
+    text-align:left;
+}
+
+.dark th,
+.dark td{
+    border-color:#374151;
+}
+
+th{
+    color:#6b7280;
+    font-size:14px;
+}
+
+.amount-plus{
+    color:#16a34a;
+    font-weight:bold;
+}
+
+.amount-minus{
+    color:#dc2626;
+    font-weight:bold;
+}
+
+.amount-purple{
+    color:#9333ea;
+    font-weight:bold;
+}
+
+.type-tag{
+    padding:6px 9px;
+    border-radius:8px;
+    font-size:12px;
+    font-weight:bold;
+    display:inline-block;
+}
+
+.tag-income{
+    background:#dcfce7;
+    color:#166534;
+}
+
+.tag-expense{
+    background:#fee2e2;
+    color:#991b1b;
+}
+
+.tag-saving{
+    background:#f3e8ff;
+    color:#6b21a8;
+}
+
+.tag-udhaar{
+    background:#dbeafe;
+    color:#1e40af;
+}
+
+.action-cell button{
+    border:0;
+    padding:7px 9px;
+    border-radius:8px;
+    cursor:pointer;
+    margin-right:4px;
+}
+
+.edit-btn{
+    background:#e0e7ff;
+}
+
+.delete-btn{
+    background:#fee2e2;
+}
+
+.return-btn{
+    background:#dcfce7;
+}
+
+/* REPORT */
+
+.report-grid{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:15px;
+}
+
+.report-box{
+    padding:18px;
+    border-radius:15px;
+    background:#f3f4f6;
+}
+
+.dark .report-box{
+    background:#111827;
+}
+
+.report-box strong{
+    display:block;
+    font-size:24px;
+    margin-top:7px;
+}
+
+/* GRAPH */
+
+.chart-container{
+    display:flex;
+    align-items:flex-end;
+    justify-content:center;
+    gap:30px;
+    height:300px;
+    padding:35px 20px 45px;
+    border-radius:15px;
+    background:#f9fafb;
+    margin-top:18px;
+}
+
+.dark .chart-container{
+    background:#111827;
+}
+
+.bar{
+    width:75px;
+    min-height:8px;
+    border-radius:10px 10px 4px 4px;
+    position:relative;
+    transition:.4s;
+}
+
+#incomeBar{
+    background:#16a34a;
+}
+
+#expenseBar{
+    background:#dc2626;
+}
+
+#savingBar{
+    background:#9333ea;
+}
+
+#givenBar{
+    background:#007bff;
+}
+
+#takenBar{
+    background:#ff000d;
+}
+
+.bar span{
+    position:absolute;
+    bottom:-38px;
+    width:100%;
+    left:0;
+    text-align:center;
+    font-size:12px;
+    font-weight:bold;
+}
+
+.bar-label{
+    position:absolute;
+    top:-28px;
+    width:120px;
+    left:50%;
+    transform:translateX(-50%);
+    text-align:center;
+    font-weight:bold;
+    font-size:12px;
+}
+
+/* LEGEND */
+
+.legend{
+    display:flex;
+    justify-content:center;
+    flex-wrap:wrap;
+    gap:18px;
+    margin-top:15px;
+    font-size:13px;
+    font-weight:bold;
+}
+
+.legend-item{
+    display:flex;
+    align-items:center;
+    gap:6px;
+}
+
+.legend-dot{
+    width:13px;
+    height:13px;
+    border-radius:50%;
+}
+
+.green-dot{
+    background:#16a34a;
+}
+
+.red-dot{
+    background:#dc2626;
+}
+
+.purple-dot{
+    background:#9333ea;
+}
+
+/* MODAL */
+
+.modal{
+    display:none;
+    position:fixed;
+    inset:0;
+    background:#00000080;
+    align-items:center;
+    justify-content:center;
+    z-index:6000;
+    padding:15px;
+}
+
+.modal.show{
+    display:flex;
+}
+
+.modal-box{
+    background:white;
+    width:100%;
+    max-width:520px;
+    max-height:90vh;
+    overflow:auto;
+    border-radius:20px;
+    padding:25px;
+}
+
+.dark .modal-box{
+    background:#1f2937;
+}
+
+.modal-box h2{
+    margin-bottom:20px;
+}
+
+.form-group{
+    margin-bottom:15px;
+}
+
+.form-group label{
+    display:block;
+    margin-bottom:7px;
+    font-weight:bold;
+}
+
+.form-group input,
+.form-group select{
+    width:100%;
+}
+
+.modal-buttons{
+    display:flex;
+    gap:10px;
+    margin-top:20px;
+}
+
+.modal-buttons button{
+    flex:1;
+    padding:13px;
+    border:0;
+    border-radius:10px;
+    cursor:pointer;
+    font-weight:bold;
+}
+
+.save-modal{
+    background:#2563eb;
+    color:white;
+}
+
+.cancel-modal{
+    background:#e5e7eb;
+}
+
+/* PIN */
+
+.pin-screen{
+    position:fixed;
+    inset:0;
+    background:#111827;
+    z-index:7000;
+    display:none;
+    align-items:center;
+    justify-content:center;
+    padding:20px;
+}
+
+.pin-screen.show{
+    display:flex;
+}
+
+.pin-box{
+    background:white;
+    padding:30px;
+    border-radius:20px;
+    width:100%;
+    max-width:380px;
+    text-align:center;
+}
+
+.pin-box input{
+    width:100%;
+    margin:20px 0;
+    text-align:center;
+    font-size:25px;
+    letter-spacing:8px;
+}
+
+.pin-box button{
+    width:100%;
+    padding:14px;
+    border:0;
+    border-radius:10px;
+    background:#2563eb;
+    color:white;
+    font-weight:bold;
+    cursor:pointer;
+}
+
+.empty{
+    text-align:center;
+    padding:35px;
+    color:#6b7280;
+}
+
+/* MOBILE */
+
+@media(max-width:1100px){
+
+    .history-stat-grid{
+        grid-template-columns:repeat(3,1fr);
+    }
+
+}
+
+@media(max-width:850px){
+
+    .dashboard{
+        grid-template-columns:repeat(2,1fr);
+    }
+
+    .balance-card{
+        grid-column:span 2;
+    }
+
+    .actions{
+        grid-template-columns:repeat(2,1fr);
+    }
+
+    .report-grid{
+        grid-template-columns:repeat(2,1fr);
+    }
+
+    .history-stat-grid{
+        grid-template-columns:repeat(2,1fr);
+    }
+
+}
+
+@media(max-width:550px){
+
+    .logo{
+        font-size:24px;
+    }
+
+    .header{
+        align-items:flex-start;
+        flex-direction:column;
+    }
+
+    .dashboard{
+        grid-template-columns:1fr;
+    }
+
+    .balance-card{
+        grid-column:span 1;
+    }
+
+    .actions{
+        grid-template-columns:1fr;
+    }
+
+    .action-btn{
+        min-height:95px;
+    }
+
+    .report-grid{
+        grid-template-columns:1fr;
+    }
+
+    .balance-value{
+        font-size:34px;
+    }
+
+    .chart-container{
+        gap:12px;
+    }
+
+    .bar{
+        width:48px;
+    }
+
+    .history-stat-grid{
+        grid-template-columns:1fr;
+    }
+
+    .history-page-header{
+        align-items:flex-start;
+        flex-direction:column;
+    }
+
+    .history-page-title{
+        font-size:24px;
+    }
+
+}
+
+</style>
+</head>
+
+<body>
+
+<!-- MAIN DASHBOARD -->
+
+<div class="container">
+
+    <!-- HEADER -->
+
+    <div class="header">
+
+        <div>
+
+            <div class="logo">
+                💰 <span>My Money</span> Manager
+            </div>
+
+            <div class="founder">
+                FOUNDER — ADIL USMANI
+            </div>
+
+        </div>
+
+        <div class="header-buttons">
+
+            <button class="small-btn" onclick="toggleDark()">
+                🌙 Theme
+            </button>
+
+            <button class="small-btn" onclick="backupData()">
+                💾 Backup
+            </button>
+
+            <button
+                class="small-btn"
+                onclick="document.getElementById('restoreFile').click()"
+            >
+                📂 Restore
+            </button>
+
+            <input
+                type="file"
+                id="restoreFile"
+                accept=".json"
+                hidden
+                onchange="restoreData(event)"
+            >
+
+            <button class="small-btn" onclick="openPinSettings()">
+                🔐 PIN
+            </button>
+
+        </div>
+
+    </div>
+
+
+    <!-- DASHBOARD -->
+
+    <div class="dashboard">
+
+        <div class="card balance-card">
+
+            <div class="card-title">
+                Current Balance
+            </div>
+
+            <div class="balance-value" id="currentBalance">
+                ₹0
+            </div>
+
+            <small>
+                Udhaar Diya − Udhaar Liya
+            </small>
+
+        </div>
+
+
+        <div class="card">
+
+            <div class="card-title">
+                💚 Total Income
+            </div>
+
+            <div class="card-value" id="totalIncome">
+                ₹0
+            </div>
+
+        </div>
+
+
+        <div class="card">
+
+            <div class="card-title">
+                🔴 Total Expenses
+            </div>
+
+            <div class="card-value" id="totalExpense">
+                ₹0
+            </div>
+
+        </div>
+
+
+        <div class="card">
+
+            <div class="card-title">
+                💜 Total Saving
+            </div>
+
+            <div class="card-value" id="totalSaving">
+                ₹0
+            </div>
+
+        </div>
+
+
+        <div class="card">
+
+            <div class="card-title">
+                🤝 Udhaar Diya
+            </div>
+
+            <div class="card-value amount-plus" id="totalGiven">
+                ₹0
+            </div>
+
+        </div>
+
+
+        <div class="card">
+
+            <div class="card-title">
+                🤝 Udhaar Liya
+            </div>
+
+            <div class="card-value amount-minus" id="totalTaken">
+                ₹0
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- MAIN BUTTONS -->
+
+    <div class="actions">
+
+        <button
+            class="action-btn income"
+            onclick="openModal('income')"
+        >
+            💚 + Income
+        </button>
+
+        <button
+            class="action-btn expense"
+            onclick="openModal('expense')"
+        >
+            🔴 − Expense
+        </button>
+
+        <button
+            class="action-btn saving"
+            onclick="openModal('saving')"
+        >
+            💜 + Saving
+        </button>
+
+        <button
+            class="action-btn udhaar"
+            onclick="openModal('udhaar')"
+        >
+            🤝 Udhaar
+        </button>
+
+        <button
+            class="action-btn history-btn"
+            onclick="openHistoryPage()"
+        >
+            🔎 History
+        </button>
+
+    </div>
+
+
+    <!-- MONTHLY REPORT -->
+
+    <div class="section">
+
+        <h2>📊 Monthly Report</h2>
+
+        <div class="controls">
+
+            <select
+                id="reportMonth"
+                onchange="monthlyReport()"
+            >
+            </select>
+
+        </div>
+
+        <br>
+
+        <div class="report-grid">
+
+            <div class="report-box">
+                Income
+                <strong id="monthIncome">
+                    ₹0
+                </strong>
+            </div>
+
+            <div class="report-box">
+                Expense
+                <strong id="monthExpense">
+                    ₹0
+                </strong>
+            </div>
+
+            <div class="report-box">
+                Saving
+                <strong id="monthSaving">
+                    ₹0
+                </strong>
+            </div>
+
+            <div class="report-box">
+                Udhaar Balance
+                <strong id="monthUdhaar">
+                    ₹0
+                </strong>
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- GRAPH -->
+
+    <div class="section">
+
+        <h2>📈 Money Overview</h2>
+
+        <div class="chart-container">
+
+            <div class="bar" id="incomeBar">
+
+                <div class="bar-label">
+                    ₹0
+                </div>
+
+                <span>
+                    💚 Income
+                </span>
+
+            </div>
+
+
+            <div class="bar" id="expenseBar">
+
+                <div class="bar-label">
+                    ₹0
+                </div>
+
+                <span>
+                    🔴 Expense
+                </span>
+
+            </div>
+
+
+            <div class="bar" id="savingBar">
+
+                <div class="bar-label">
+                    ₹0
+                </div>
+
+                <span>
+                    💜 Saving
+                </span>
+
+            </div>
+
+
+            <div class="bar" id="givenBar">
+
+                <div class="bar-label">
+                    ₹0
+                </div>
+
+                <span>
+                    🤝 Given
+                </span>
+
+            </div>
+
+
+            <div class="bar" id="takenBar">
+
+                <div class="bar-label">
+                    ₹0
+                </div>
+
+                <span>
+                    🤝 Taken
+                </span>
+
+            </div>
+
+        </div>
+
+
+        <div class="legend">
+
+            <div class="legend-item">
+                <div class="legend-dot green-dot"></div>
+                Income / Given
+            </div>
+
+            <div class="legend-item">
+                <div class="legend-dot red-dot"></div>
+                Expense / Taken
+            </div>
+
+            <div class="legend-item">
+                <div class="legend-dot purple-dot"></div>
+                Saving
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- HISTORY SCREEN -->
+
+<div class="history-page" id="historyPage">
+
+    <div class="history-page-container">
+
+        <div class="history-page-header">
+
+            <button
+                class="back-btn"
+                onclick="closeHistoryPage()"
+            >
+                ← Back
+            </button>
+
+            <div>
+
+                <div class="history-page-title">
+                    🔎 Transaction History
+                </div>
+
+                <div class="history-page-subtitle">
+                    Apne saare transactions yahan check karo
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- HISTORY QUICK STATS -->
+
+        <div class="history-stat-grid">
+
+            <div class="history-stat">
+
+                <div class="history-stat-title">
+                    Total Transactions
+                </div>
+
+                <div
+                    class="history-stat-value"
+                    id="historyCount"
+                >
+                    0
+                </div>
+
+            </div>
+
+
+            <div class="history-stat">
+
+                <div class="history-stat-title">
+                    💚 Income
+                </div>
+
+                <div
+                    class="history-stat-value amount-plus"
+                    id="historyIncome"
+                >
+                    ₹0
+                </div>
+
+            </div>
+
+
+            <div class="history-stat">
+
+                <div class="history-stat-title">
+                    🔴 Expense
+                </div>
+
+                <div
+                    class="history-stat-value amount-minus"
+                    id="historyExpense"
+                >
+                    ₹0
+                </div>
+
+            </div>
+
+
+            <div class="history-stat">
+
+                <div class="history-stat-title">
+                    💜 Saving
+                </div>
+
+                <div
+                    class="history-stat-value amount-purple"
+                    id="historySaving"
+                >
+                    ₹0
+                </div>
+
+            </div>
+
+
+            <div class="history-stat">
+
+                <div class="history-stat-title">
+                    🤝 Udhaar Diya
+                </div>
+
+                <div
+                    class="history-stat-value amount-plus"
+                    id="historyGiven"
+                >
+                    ₹0
+                </div>
+
+            </div>
+
+
+            <div class="history-stat">
+
+                <div class="history-stat-title">
+                    🤝 Udhaar Liya
+                </div>
+
+                <div
+                    class="history-stat-value amount-minus"
+                    id="historyTaken"
+                >
+                    ₹0
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- HISTORY TABLE -->
+
+        <div class="history-section">
+
+            <h2>
+                📋 All Transactions
+            </h2>
+
+            <div class="controls">
+
+                <input
+                    class="search"
+                    id="search"
+                    placeholder="Search name, category, note..."
+                    oninput="renderHistory()"
+                >
+
+
+                <select
+                    id="filterType"
+                    onchange="renderHistory()"
+                >
+
+                    <option value="all">
+                        All Types
+                    </option>
+
+                    <option value="income">
+                        Income
+                    </option>
+
+                    <option value="expense">
+                        Expense
+                    </option>
+
+                    <option value="saving">
+                        Saving
+                    </option>
+
+                    <option value="udhaar_given">
+                        Udhaar Diya
+                    </option>
+
+                    <option value="udhaar_taken">
+                        Udhaar Liya
+                    </option>
+
+                    <option value="udhaar_return">
+                        Udhaar Return
+                    </option>
+
+                </select>
+
+
+                <select
+                    id="filterMonth"
+                    onchange="renderHistory()"
+                >
+
+                    <option value="all">
+                        All Months
+                    </option>
+
+                </select>
+
+            </div>
+
+
+            <div class="table-wrap">
+
+                <table>
+
+                    <thead>
+
+                        <tr>
+
+                            <th>Date</th>
+                            <th>Type</th>
+                            <th>Name / Description</th>
+                            <th>Category</th>
+                            <th>Amount</th>
+                            <th>Note</th>
+                            <th>Action</th>
+
+                        </tr>
+
+                    </thead>
+
+                    <tbody id="transactionBody"></tbody>
+
+                </table>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- ADD / EDIT MODAL -->
+
+<div class="modal" id="transactionModal">
+
+    <div class="modal-box">
+
+        <h2 id="modalTitle">
+            Add Transaction
+        </h2>
+
+        <div class="form-group">
+
+            <label>
+                Name / Description
+            </label>
+
+            <input
+                id="name"
+                placeholder="Example: Rahul / Salary"
+            >
+
+        </div>
+
+
+        <div class="form-group">
+
+            <label>
+                Amount
+            </label>
+
+            <input
+                id="amount"
+                type="number"
+                min="0"
+                placeholder="₹ Amount"
+            >
+
+        </div>
+
+
+        <div class="form-group">
+
+            <label>
+                Type
+            </label>
+
+            <select
+                id="transactionType"
+                onchange="updateCategory()"
+            ></select>
+
+        </div>
+
+
+        <!-- CATEGORY ONLY FOR UDHAAR -->
+
+        <div
+            class="form-group"
+            id="categoryGroup"
+            style="display:none;"
+        >
+
+            <label>
+                Category
+            </label>
+
+            <select id="category"></select>
+
+        </div>
+
+
+        <div class="form-group">
+
+            <label>
+                Date
+            </label>
+
+            <input
+                id="date"
+                type="date"
+            >
+
+        </div>
+
+
+        <div class="form-group">
+
+            <label>
+                Note
+            </label>
+
+            <input
+                id="note"
+                placeholder="Optional note"
+            >
+
+        </div>
+
+
+        <div class="modal-buttons">
+
+            <button
+                class="cancel-modal"
+                onclick="closeModal()"
+            >
+                Cancel
+            </button>
+
+            <button
+                class="save-modal"
+                onclick="saveTransaction()"
+            >
+                Save
+            </button>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- RETURN MODAL -->
+
+<div class="modal" id="returnModal">
+
+    <div class="modal-box">
+
+        <h2>
+            🤝 Udhaar Return
+        </h2>
+
+        <div class="form-group">
+
+            <label>
+                Return Amount
+            </label>
+
+            <input
+                id="returnAmount"
+                type="number"
+                min="0"
+            >
+
+        </div>
+
+        <div class="form-group">
+
+            <label>
+                Date
+            </label>
+
+            <input
+                id="returnDate"
+                type="date"
+            >
+
+        </div>
+
+        <div class="form-group">
+
+            <label>
+                Note
+            </label>
+
+            <input
+                id="returnNote"
+                placeholder="Example: Rahul returned money"
+            >
+
+        </div>
+
+        <div class="modal-buttons">
+
+            <button
+                class="cancel-modal"
+                onclick="closeReturnModal()"
+            >
+                Cancel
+            </button>
+
+            <button
+                class="save-modal"
+                onclick="saveReturn()"
+            >
+                Return
+            </button>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- PIN -->
+
+<div class="pin-screen" id="pinScreen">
+
+    <div class="pin-box">
+
+        <h2>
+            🔐 Money Manager
+        </h2>
+
+        <p>
+            Enter your PIN
+        </p>
+
+        <input
+            id="pinInput"
+            type="password"
+            maxlength="6"
+            inputmode="numeric"
+            placeholder="••••"
+        >
+
+        <button onclick="checkPin()">
+            Unlock
+        </button>
+
+    </div>
+
+</div>
+
+
+<script>
+
+/* DATA */
+
+let transactions =
+    JSON.parse(
+        localStorage.getItem("moneyTransactions")
+    ) || [];
+
+let editingId = null;
+let returnTransactionId = null;
+
+
+/* CATEGORIES */
+/* Udhaar Diya aur Udhaar Liya dono me same categories */
+
+const categories = {
+
+    udhaar_given:[
+        "Friend",
+        "Family",
+        "Customer",
+        "Business",
+        "Other"
+    ],
+
+    udhaar_taken:[
+        "Friend",
+        "Family",
+        "Customer",
+        "Business",
+        "Other"
+    ]
+
+};
+
+
+/* MONEY */
+
+function money(value){
+
+    return "₹" +
+        Number(value || 0)
+        .toLocaleString("en-IN");
+
+}
+
+
+/* SAVE */
+
+function saveData(){
+
+    localStorage.setItem(
+        "moneyTransactions",
+        JSON.stringify(transactions)
+    );
+
+}
+
+
+/*
+==================================================
+TYPE NORMALIZER
+==================================================
+*/
+
+function normalizeType(t){
+
+    if(!t) return "";
+
+    const type =
+        String(t.type || "")
+        .toLowerCase()
+        .trim();
+
+    if(type === "income")
+        return "income";
+
+    if(type === "expense")
+        return "expense";
+
+    if(type === "saving")
+        return "saving";
+
+    if(type === "udhaar_given")
+        return "udhaar_given";
+
+    if(type === "udhaar_taken")
+        return "udhaar_taken";
+
+    if(type === "udhaar_return")
+        return "udhaar_return";
+
+    if(type === "given")
+        return "udhaar_given";
+
+    if(type === "taken")
+        return "udhaar_taken";
+
+    if(type === "udhaar" || type === "loan"){
+
+        const direction =
+            String(
+                t.direction ||
+                t.udhaarType ||
+                t.loanType ||
+                t.mode ||
+                ""
+            )
+            .toLowerCase()
+            .trim();
+
+        if(
+            direction === "given" ||
+            direction === "diya" ||
+            direction === "udhaar diya" ||
+            direction === "udhaar_diyaa"
+        ){
+
+            return "udhaar_given";
+
+        }
+
+        if(
+            direction === "taken" ||
+            direction === "liya" ||
+            direction === "udhaar liya" ||
+            direction === "udhaar_liya"
+        ){
+
+            return "udhaar_taken";
+
+        }
+
+    }
+
+    return type;
+
+}
+
+
+/* HISTORY PAGE OPEN */
+
+function openHistoryPage(){
+
+    document
+        .getElementById("historyPage")
+        .classList.add("show");
+
+    renderHistory();
+
+}
+
+
+/* HISTORY PAGE CLOSE */
+
+function closeHistoryPage(){
+
+    document
+        .getElementById("historyPage")
+        .classList.remove("show");
+
+}
+
+
+/* TYPE OPTIONS */
+
+function setTypeOptions(mode){
+
+    const typeSelect =
+        document.getElementById("transactionType");
+
+    typeSelect.innerHTML = "";
+
+    if(mode === "udhaar"){
+
+        typeSelect.innerHTML = `
+
+            <option value="udhaar_given">
+                🤝 Udhaar Diya (+)
+            </option>
+
+            <option value="udhaar_taken">
+                🤝 Udhaar Liya (-)
+            </option>
+
+        `;
+
+    }
+
+    else if(mode === "income"){
+
+        typeSelect.innerHTML = `
+
+            <option value="income">
+                💚 Income
+            </option>
+
+        `;
+
+    }
+
+    else if(mode === "expense"){
+
+        typeSelect.innerHTML = `
+
+            <option value="expense">
+                🔴 Expense
+            </option>
+
+        `;
+
+    }
+
+    else if(mode === "saving"){
+
+        typeSelect.innerHTML = `
+
+            <option value="saving">
+                💜 Saving
+            </option>
+
+        `;
+
+    }
+
+    updateCategory();
+
+}
+
+
+/* OPEN */
+
+function openModal(type){
+
+    editingId = null;
+
+    document
+        .getElementById("transactionModal")
+        .classList.add("show");
+
+    document.getElementById("modalTitle")
+        .innerText = "Add Transaction";
+
+    /*
+    Udhaar button par sirf Udhaar Diya / Udhaar Liya
+    dikhega.
+    */
+
+    setTypeOptions(type);
+
+    document.getElementById("name").value = "";
+
+    document.getElementById("amount").value = "";
+
+    document.getElementById("note").value = "";
+
+    document.getElementById("date").value =
+        new Date()
+        .toISOString()
+        .split("T")[0];
+
+    updateCategory();
+
+}
+
+
+/* CLOSE */
+
+function closeModal(){
+
+    document
+        .getElementById("transactionModal")
+        .classList.remove("show");
+
+}
+
+
+/* CATEGORY */
+
+function updateCategory(){
+
+    const type =
+        document.getElementById("transactionType")
+        .value;
+
+    const category =
+        document.getElementById("category");
+
+    const categoryGroup =
+        document.getElementById("categoryGroup");
+
+    category.innerHTML = "";
+
+    /*
+    Category sirf Udhaar Diya/Liya me dikhegi.
+    */
+
+    if(
+        type !== "udhaar_given" &&
+        type !== "udhaar_taken"
+    ){
+
+        categoryGroup.style.display = "none";
+
+        category.value = "";
+
+        return;
+
+    }
+
+    categoryGroup.style.display = "block";
+
+    (categories[type] || [])
+    .forEach(item => {
+
+        const option =
+            document.createElement("option");
+
+        option.value = item;
+        option.textContent = item;
+
+        category.appendChild(option);
+
+    });
+
+}
+
+
+/* SAVE TRANSACTION */
+
+function saveTransaction(){
+
+    const name =
+        document.getElementById("name")
+        .value.trim();
+
+    const amount =
+        Number(
+            document.getElementById("amount").value
+        );
+
+    const type =
+        document.getElementById("transactionType")
+        .value;
+
+    /*
+    Income / Expense / Saving me category nahi hogi.
+    Sirf Udhaar me category save hogi.
+    */
+
+    const category =
+        (
+            type === "udhaar_given" ||
+            type === "udhaar_taken"
+        )
+        ? document.getElementById("category").value
+        : "";
+
+    const date =
+        document.getElementById("date")
+        .value;
+
+    const note =
+        document.getElementById("note")
+        .value.trim();
+
+    if(!name){
+
+        alert("Name / Description daalo.");
+
+        return;
+
+    }
+
+    if(!amount || amount <= 0){
+
+        alert("Valid amount daalo.");
+
+        return;
+
+    }
+
+    if(!date){
+
+        alert("Date select karo.");
+
+        return;
+
+    }
+
+    if(editingId){
+
+        const index =
+            transactions.findIndex(
+                t => t.id === editingId
+            );
+
+        if(index !== -1){
+
+            transactions[index] = {
+
+                ...transactions[index],
+
+                name,
+                amount,
+                type,
+                category,
+                date,
+                note
+
+            };
+
+        }
+
+    }else{
+
+        transactions.push({
+
+            id:Date.now(),
+
+            name,
+
+            amount,
+
+            type,
+
+            category,
+
+            date,
+
+            note
+
+        });
+
+    }
+
+    saveData();
+
+    closeModal();
+
+    renderAll();
+
+}
+
+
+/* EDIT */
+
+function editTransaction(id){
+
+    const t =
+        transactions.find(
+            x => x.id === id
+        );
+
+    if(!t) return;
+
+    editingId = id;
+
+    document
+        .getElementById("transactionModal")
+        .classList.add("show");
+
+    document.getElementById("modalTitle")
+        .innerText = "Edit Transaction";
+
+    document.getElementById("name")
+        .value = t.name || "";
+
+    document.getElementById("amount")
+        .value = t.amount || "";
+
+    let normalized =
+        normalizeType(t);
+
+    if(normalized === "udhaar_return"){
+
+        normalized =
+            t.category === "Return Received"
+                ? "udhaar_given"
+                : "udhaar_taken";
+
+    }
+
+    /*
+    Edit me saare valid Type options available rahenge.
+    */
+
+    const typeSelect =
+        document.getElementById("transactionType");
+
+    typeSelect.innerHTML = `
+
+        <option value="income">
+            💚 Income
+        </option>
+
+        <option value="expense">
+            🔴 Expense
+        </option>
+
+        <option value="saving">
+            💜 Saving
+        </option>
+
+        <option value="udhaar_given">
+            🤝 Udhaar Diya (+)
+        </option>
+
+        <option value="udhaar_taken">
+            🤝 Udhaar Liya (-)
+        </option>
+
+    `;
+
+    typeSelect.value = normalized;
+
+    updateCategory();
+
+    if(
+        normalized === "udhaar_given" ||
+        normalized === "udhaar_taken"
+    ){
+
+        if(
+            categories[normalized] &&
+            categories[normalized].includes(t.category)
+        ){
+
+            document.getElementById("category")
+                .value = t.category;
+
+        }
+        else{
+
+            document.getElementById("category")
+                .value = "Friend";
+
+        }
+
+    }
+
+    document.getElementById("date")
+        .value = t.date || "";
+
+    document.getElementById("note")
+        .value = t.note || "";
+
+}
+
+
+/* DELETE */
+
+function deleteTransaction(id){
+
+    if(
+        !confirm(
+            "Kya tum ye transaction delete karna chahte ho?"
+        )
+    )
+        return;
+
+    transactions =
+        transactions.filter(
+            t => t.id !== id
+        );
+
+    saveData();
+
+    renderAll();
+
+}
+
+
+/* RETURN */
+
+function openReturnModal(id){
+
+    const original =
+        transactions.find(
+            t => t.id === id
+        );
+
+    if(!original) return;
+
+    const originalType =
+        normalizeType(original);
+
+    if(
+        originalType !== "udhaar_given" &&
+        originalType !== "udhaar_taken"
+    ){
+
+        alert("Sirf Udhaar transaction ka return ho sakta hai.");
+
+        return;
+
+    }
+
+    returnTransactionId = id;
+
+    document
+        .getElementById("returnModal")
+        .classList.add("show");
+
+    document.getElementById("returnAmount")
+        .value = "";
+
+    document.getElementById("returnDate")
+        .value =
+        new Date()
+        .toISOString()
+        .split("T")[0];
+
+    document.getElementById("returnNote")
+        .value = "";
+
+}
+
+
+function closeReturnModal(){
+
+    document
+        .getElementById("returnModal")
+        .classList.remove("show");
+
+    returnTransactionId = null;
+
+}
+
+
+function saveReturn(){
+
+    const original =
+        transactions.find(
+            t => t.id === returnTransactionId
+        );
+
+    if(!original) return;
+
+    const originalType =
+        normalizeType(original);
+
+    const amount =
+        Number(
+            document.getElementById("returnAmount")
+            .value
+        );
+
+    const returnDate =
+        document.getElementById("returnDate")
+        .value;
+
+    if(!amount || amount <= 0){
+
+        alert("Valid return amount daalo.");
+
+        return;
+
+    }
+
+    let alreadyReturned = 0;
+
+    transactions.forEach(t => {
+
+        if(
+            normalizeType(t) === "udhaar_return" &&
+            t.name === original.name
+        ){
+
+            if(
+                originalType === "udhaar_given" &&
+                t.category === "Return Received"
+            ){
+
+                alreadyReturned += Number(t.amount || 0);
+
+            }
+
+            if(
+                originalType === "udhaar_taken" &&
+                t.category === "Return Paid"
+            ){
+
+                alreadyReturned += Number(t.amount || 0);
+
+            }
+
+        }
+
+    });
+
+    const remaining =
+        Number(original.amount || 0) -
+        alreadyReturned;
+
+    if(amount > remaining){
+
+        alert(
+            "Return amount remaining udhaar se zyada nahi ho sakta.\n\nRemaining: " +
+            money(remaining)
+        );
+
+        return;
+
+    }
+
+    if(!returnDate){
+
+        alert("Date select karo.");
+
+        return;
+
+    }
+
+    transactions.push({
+
+        id:Date.now(),
+
+        name:original.name,
+
+        amount:amount,
+
+        type:"udhaar_return",
+
+        category:
+            originalType === "udhaar_given"
+                ? "Return Received"
+                : "Return Paid",
+
+        date:returnDate,
+
+        note:
+            document.getElementById("returnNote")
+            .value.trim() ||
+            "Udhaar return"
+
+    });
+
+    saveData();
+
+    closeReturnModal();
+
+    renderAll();
+
+}
+
+
+/*
+==================================================
+CALCULATE
+==================================================
+*/
+
+function calculate(){
+
+    let income = 0;
+    let expense = 0;
+    let saving = 0;
+
+    let given = 0;
+    let taken = 0;
+
+    let givenReturn = 0;
+    let takenReturn = 0;
+
+    transactions.forEach(t => {
+
+        const type =
+            normalizeType(t);
+
+        const amount =
+            Number(t.amount || 0);
+
+        if(type === "income")
+            income += amount;
+
+        if(type === "expense")
+            expense += amount;
+
+        if(type === "saving")
+            saving += amount;
+
+        if(type === "udhaar_given")
+            given += amount;
+
+        if(type === "udhaar_taken")
+            taken += amount;
+
+        if(type === "udhaar_return"){
+
+            if(t.category === "Return Received")
+                givenReturn += amount;
+
+            if(t.category === "Return Paid")
+                takenReturn += amount;
+
+        }
+
+    });
+
+    const netGiven =
+        Math.max(0, given - givenReturn);
+
+    const netTaken =
+        Math.max(0, taken - takenReturn);
+
+    const balance =
+        netGiven - netTaken;
+
+    return {
+
+        income,
+        expense,
+        saving,
+        given:netGiven,
+        taken:netTaken,
+        balance
+
+    };
+
+}
+
+
+/* DASHBOARD */
+
+function updateDashboard(){
+
+    const c = calculate();
+
+    document.getElementById("currentBalance")
+        .innerText = money(c.balance);
+
+    document.getElementById("totalIncome")
+        .innerText = money(c.income);
+
+    document.getElementById("totalExpense")
+        .innerText = money(c.expense);
+
+    document.getElementById("totalSaving")
+        .innerText = money(c.saving);
+
+    document.getElementById("totalGiven")
+        .innerText = money(c.given);
+
+    document.getElementById("totalTaken")
+        .innerText = money(c.taken);
+
+}
+
+
+/*
+==================================================
+HISTORY
+==================================================
+*/
+
+function renderHistory(){
+
+    const tbody =
+        document.getElementById("transactionBody");
+
+    if(!tbody) return;
+
+    const searchElement =
+        document.getElementById("search");
+
+    const filterElement =
+        document.getElementById("filterType");
+
+    const monthElement =
+        document.getElementById("filterMonth");
+
+    const search =
+        searchElement
+            ? searchElement.value.toLowerCase()
+            : "";
+
+    const filter =
+        filterElement
+            ? filterElement.value
+            : "all";
+
+    const month =
+        monthElement
+            ? monthElement.value
+            : "all";
+
+    let list = [...transactions];
+
+
+    /* SEARCH */
+
+    if(search){
+
+        list = list.filter(t => {
+
+            const searchable = [
+
+                t.name || "",
+                t.category || "",
+                t.note || "",
+                normalizeType(t)
+
+            ]
+            .join(" ")
+            .toLowerCase();
+
+            return searchable.includes(search);
+
+        });
+
+    }
+
+
+    /* TYPE FILTER */
+
+    if(filter !== "all"){
+
+        list =
+            list.filter(
+                t => normalizeType(t) === filter
+            );
+
+    }
+
+
+    /* MONTH FILTER */
+
+    if(month !== "all"){
+
+        list =
+            list.filter(
+                t =>
+                    String(t.date || "")
+                    .startsWith(month)
+            );
+
+    }
+
+
+    /* SORT */
+
+    list.sort(
+        (a,b) =>
+            new Date(
+                String(b.date || "") + "T00:00:00"
+            ) -
+            new Date(
+                String(a.date || "") + "T00:00:00"
+            )
+    );
+
+
+    tbody.innerHTML = "";
+
+
+    /* HISTORY STATS */
+
+    updateHistoryStats(list);
+
+
+    /* EMPTY */
+
+    if(list.length === 0){
+
+        tbody.innerHTML = `
+
+            <tr>
+
+                <td
+                    colspan="7"
+                    class="empty"
+                >
+                    No transactions found.
+                </td>
+
+            </tr>
+
+        `;
+
+    }
+
+
+    /* ROWS */
+
+    list.forEach(t => {
+
+        const type =
+            normalizeType(t);
+
+        let typeText = "";
+        let tagClass = "";
+        let amountClass = "";
+        let sign = "";
+
+
+        if(type === "income"){
+
+            typeText = "Income";
+            tagClass = "tag-income";
+            amountClass = "amount-plus";
+            sign = "+";
+
+        }
+
+        else if(type === "expense"){
+
+            typeText = "Expense";
+            tagClass = "tag-expense";
+            amountClass = "amount-minus";
+            sign = "−";
+
+        }
+
+        else if(type === "saving"){
+
+            typeText = "Saving";
+            tagClass = "tag-saving";
+            amountClass = "amount-purple";
+            sign = "+";
+
+        }
+
+        else if(type === "udhaar_given"){
+
+            typeText = "Udhaar Diya";
+            tagClass = "tag-udhaar";
+            amountClass = "amount-plus";
+            sign = "+";
+
+        }
+
+        else if(type === "udhaar_taken"){
+
+            typeText = "Udhaar Liya";
+            tagClass = "tag-udhaar";
+            amountClass = "amount-minus";
+            sign = "−";
+
+        }
+
+        else if(type === "udhaar_return"){
+
+            typeText = "Udhaar Return";
+            tagClass = "tag-udhaar";
+
+            if(
+                t.category === "Return Received"
+            ){
+
+                amountClass = "amount-plus";
+                sign = "+";
+
+            }
+            else{
+
+                amountClass = "amount-minus";
+                sign = "−";
+
+            }
+
+        }
+
+        else{
+
+            typeText = t.type || "Other";
+            tagClass = "tag-udhaar";
+            amountClass = "amount-plus";
+            sign = "+";
+
+        }
+
+
+        const tr =
+            document.createElement("tr");
+
+
+        let returnButton = "";
+
+
+        if(
+            type === "udhaar_given" ||
+            type === "udhaar_taken"
+        ){
+
+            returnButton = `
+
+                <button
+                    class="return-btn"
+                    onclick="openReturnModal(${Number(t.id)})"
+                    title="Udhaar Return"
+                >
+                    ↩️
+                </button>
+
+            `;
+
+        }
+
+
+        /*
+        Income / Expense / Saving ke liye
+        Category ki jagah "-" show hoga.
+        */
+
+        const displayCategory =
+            (
+                type === "udhaar_given" ||
+                type === "udhaar_taken" ||
+                type === "udhaar_return"
+            )
+            ? (t.category || "-")
+            : "-";
+
+
+        tr.innerHTML = `
+
+            <td>
+                ${formatDate(t.date)}
+            </td>
+
+            <td>
+
+                <span
+                    class="type-tag ${tagClass}">
+                    ${escapeHTML(typeText)}
+                </span>
+
+            </td>
+
+            <td>
+                ${escapeHTML(t.name || "-")}
+            </td>
+
+            <td>
+                ${escapeHTML(displayCategory)}
+            </td>
+
+            <td class="${amountClass}">
+                ${sign}${money(t.amount)}
+            </td>
+
+            <td>
+                ${escapeHTML(t.note || "-")}
+            </td>
+
+            <td class="action-cell">
+
+                <button
+                    class="edit-btn"
+                    onclick="editTransaction(${Number(t.id)})"
+                    title="Edit"
+                >
+                    ✏️
+                </button>
+
+                ${returnButton}
+
+                <button
+                    class="delete-btn"
+                    onclick="deleteTransaction(${Number(t.id)})"
+                    title="Delete"
+                >
+                    🗑️
+                </button>
+
+            </td>
+
+        `;
+
+        tbody.appendChild(tr);
+
+    });
+
+
+    updateMonthFilters();
+
+}
+
+
+/*
+==================================================
+HISTORY STATS
+==================================================
+*/
+
+function updateHistoryStats(list){
+
+    const all =
+        transactions;
+
+    let income = 0;
+    let expense = 0;
+    let saving = 0;
+
+    let given = 0;
+    let taken = 0;
+
+    let givenReturn = 0;
+    let takenReturn = 0;
+
+
+    all.forEach(t => {
+
+        const type =
+            normalizeType(t);
+
+        const amount =
+            Number(t.amount || 0);
+
+
+        if(type === "income")
+            income += amount;
+
+
+        if(type === "expense")
+            expense += amount;
+
+
+        if(type === "saving")
+            saving += amount;
+
+
+        if(type === "udhaar_given")
+            given += amount;
+
+
+        if(type === "udhaar_taken")
+            taken += amount;
+
+
+        if(type === "udhaar_return"){
+
+            if(t.category === "Return Received")
+                givenReturn += amount;
+
+            if(t.category === "Return Paid")
+                takenReturn += amount;
+
+        }
+
+    });
+
+
+    const netGiven =
+        Math.max(0, given - givenReturn);
+
+    const netTaken =
+        Math.max(0, taken - takenReturn);
+
+
+    document.getElementById("historyCount")
+        .innerText = list.length;
+
+
+    document.getElementById("historyIncome")
+        .innerText = money(income);
+
+
+    document.getElementById("historyExpense")
+        .innerText = money(expense);
+
+
+    document.getElementById("historySaving")
+        .innerText = money(saving);
+
+
+    document.getElementById("historyGiven")
+        .innerText = money(netGiven);
+
+
+    document.getElementById("historyTaken")
+        .innerText = money(netTaken);
+
+}
+
+
+/* DATE */
+
+function formatDate(date){
+
+    if(!date) return "-";
+
+    const d =
+        new Date(
+            date + "T00:00:00"
+        );
+
+    return d.toLocaleDateString(
+        "en-IN",
+        {
+            day:"2-digit",
+            month:"short",
+            year:"numeric"
+        }
+    );
+
+}
+
+
+/* MONTH FILTER */
+
+function updateMonthFilters(){
+
+    const months =
+        [
+            ...new Set(
+                transactions
+                .map(
+                    t => String(t.date || "")
+                    .substring(0,7)
+                )
+                .filter(Boolean)
+            )
+        ]
+        .sort()
+        .reverse();
+
+
+    const filter =
+        document.getElementById("filterMonth");
+
+
+    if(filter){
+
+        const current =
+            filter.value;
+
+        filter.innerHTML =
+            `<option value="all">All Months</option>`;
+
+
+        months.forEach(m => {
+
+            const option =
+                document.createElement("option");
+
+            option.value = m;
+
+            option.textContent =
+                formatMonth(m);
+
+            filter.appendChild(option);
+
+        });
+
+
+        if(months.includes(current))
+            filter.value = current;
+
+    }
+
+
+    const report =
+        document.getElementById("reportMonth");
+
+
+    if(report){
+
+        const reportCurrent =
+            report.value;
+
+        report.innerHTML = "";
+
+
+        if(months.length === 0){
+
+            const option =
+                document.createElement("option");
+
+            option.value = "";
+
+            option.textContent = "No Data";
+
+            report.appendChild(option);
+
+        }
+
+
+        months.forEach(m => {
+
+            const option =
+                document.createElement("option");
+
+            option.value = m;
+
+            option.textContent =
+                formatMonth(m);
+
+            report.appendChild(option);
+
+        });
+
+
+        if(
+            reportCurrent &&
+            months.includes(reportCurrent)
+        ){
+
+            report.value = reportCurrent;
+
+        }
+
+    }
+
+
+    monthlyReport();
+
+}
+
+
+/* MONTH */
+
+function formatMonth(month){
+
+    if(!month) return "-";
+
+    const d =
+        new Date(month + "-01");
+
+    return d.toLocaleDateString(
+        "en-IN",
+        {
+            month:"long",
+            year:"numeric"
+        }
+    );
+
+}
+
+
+/*
+==================================================
+MONTHLY REPORT
+==================================================
+*/
+
+function monthlyReport(){
+
+    const report =
+        document.getElementById("reportMonth");
+
+    if(!report) return;
+
+    const month =
+        report.value;
+
+    let income = 0;
+    let expense = 0;
+    let saving = 0;
+    let given = 0;
+    let taken = 0;
+
+    if(month){
+
+        transactions
+        .filter(
+            t =>
+                String(t.date || "")
+                .startsWith(month)
+        )
+        .forEach(t => {
+
+            const type =
+                normalizeType(t);
+
+            const amount =
+                Number(t.amount || 0);
+
+
+            if(type === "income")
+                income += amount;
+
+
+            if(type === "expense")
+                expense += amount;
+
+
+            if(type === "saving")
+                saving += amount;
+
+
+            if(type === "udhaar_given")
+                given += amount;
+
+
+            if(type === "udhaar_taken")
+                taken += amount;
+
+
+            if(type === "udhaar_return"){
+
+                if(t.category === "Return Received")
+                    given -= amount;
+
+                if(t.category === "Return Paid")
+                    taken -= amount;
+
+            }
+
+        });
+
+    }
+
+
+    given = Math.max(0,given);
+
+    taken = Math.max(0,taken);
+
+
+    document.getElementById("monthIncome")
+        .innerText = money(income);
+
+
+    document.getElementById("monthExpense")
+        .innerText = money(expense);
+
+
+    document.getElementById("monthSaving")
+        .innerText = money(saving);
+
+
+    document.getElementById("monthUdhaar")
+        .innerText =
+        money(given - taken);
+
+}
+
+
+/*
+==================================================
+GRAPH
+==================================================
+*/
+
+function updateChart(){
+
+    const c =
+        calculate();
+
+
+    const values = [
+
+        c.income,
+        c.expense,
+        c.saving,
+        c.given,
+        c.taken
+
+    ];
+
+
+    const max =
+        Math.max(...values,1);
+
+
+    const ids = [
+
+        "incomeBar",
+        "expenseBar",
+        "savingBar",
+        "givenBar",
+        "takenBar"
+
+    ];
+
+
+    values.forEach(
+        (value,index) => {
+
+            const bar =
+                document.getElementById(
+                    ids[index]
+                );
+
+
+            if(!bar) return;
+
+
+            const height =
+                Math.max(
+                    8,
+                    (value / max) * 190
+                );
+
+
+            bar.style.height =
+                height + "px";
+
+
+            bar.querySelector(
+                ".bar-label"
+            ).innerText =
+                money(value);
+
+        }
+    );
+
+}
+
+
+/*
+==================================================
+RENDER ALL
+==================================================
+*/
+
+function renderAll(){
+
+    updateDashboard();
+
+    updateMonthFilters();
+
+    updateChart();
+
+
+    if(
+        document
+        .getElementById("historyPage")
+        .classList.contains("show")
+    ){
+
+        renderHistory();
+
+    }
+
+}
+
+
+/* DARK */
+
+function toggleDark(){
+
+    document.body
+        .classList.toggle("dark");
+
+    localStorage.setItem(
+        "darkMode",
+        document.body.classList.contains("dark")
+    );
+
+}
+
+
+/*
+==================================================
+BACKUP
+==================================================
+*/
+
+function backupData(){
+
+    const data = {
+
+        version:2,
+
+        createdAt:
+            new Date().toISOString(),
+
+        transactions
+
+    };
+
+
+    const blob =
+        new Blob(
+            [
+                JSON.stringify(
+                    data,
+                    null,
+                    2
+                )
+            ],
+            {
+                type:"application/json"
+            }
+        );
+
+
+    const url =
+        URL.createObjectURL(blob);
+
+
+    const a =
+        document.createElement("a");
+
+
+    a.href = url;
+
+
+    a.download =
+        "ADIL-USMANI-money-manager-backup.json";
+
+
+    a.click();
+
+
+    URL.revokeObjectURL(url);
+
+}
+
+
+/*
+==================================================
+RESTORE
+==================================================
+*/
+
+function restoreData(event){
+
+    const file =
+        event.target.files[0];
+
+    if(!file) return;
+
+
+    const reader =
+        new FileReader();
+
+
+    reader.onload = function(e){
+
+        try{
+
+            const data =
+                JSON.parse(
+                    e.target.result
+                );
+
+
+            if(
+                !data.transactions ||
+                !Array.isArray(
+                    data.transactions
+                )
+            ){
+
+                alert(
+                    "Invalid backup file."
+                );
+
+                return;
+
+            }
+
+
+            if(
+                confirm(
+                    "Restore karne se current data replace ho jayega. Continue?"
+                )
+            ){
+
+                transactions =
+                    data.transactions;
+
+                saveData();
+
+                renderAll();
+
+                alert(
+                    "Backup successfully restored."
+                );
+
+            }
+
+        }
+        catch(error){
+
+            alert(
+                "Backup file read nahi ho paayi."
+            );
+
+        }
+
+    };
+
+
+    reader.readAsText(file);
+
+    event.target.value = "";
+
+}
+
+
+/*
+==================================================
+PIN
+==================================================
+*/
+
+function openPinSettings(){
+
+    const current =
+        localStorage.getItem("moneyPin");
+
+
+    if(current){
+
+        const oldPin =
+            prompt(
+                "Current PIN enter karo:"
+            );
+
+
+        if(oldPin !== current){
+
+            alert("Wrong PIN.");
+
+            return;
+
+        }
+
+
+        const newPin =
+            prompt(
+                "New PIN enter karo (4-6 digits):"
+            );
+
+
+        if(
+            !/^\d{4,6}$/.test(newPin)
+        ){
+
+            alert(
+                "PIN 4 se 6 digits ka hona chahiye."
+            );
+
+            return;
+
+        }
+
+
+        localStorage.setItem(
+            "moneyPin",
+            newPin
+        );
+
+
+        alert(
+            "PIN successfully changed."
+        );
+
+    }
+    else{
+
+        const pin =
+            prompt(
+                "New PIN set karo (4-6 digits):"
+            );
+
+
+        if(
+            !/^\d{4,6}$/.test(pin)
+        ){
+
+            alert(
+                "PIN 4 se 6 digits ka hona chahiye."
+            );
+
+            return;
+
+        }
+
+
+        localStorage.setItem(
+            "moneyPin",
+            pin
+        );
+
+
+        alert(
+            "PIN set ho gaya."
+        );
+
+    }
+
+}
+
+
+/* PIN CHECK */
+
+function checkPin(){
+
+    const savedPin =
+        localStorage.getItem("moneyPin");
+
+
+    const entered =
+        document.getElementById("pinInput")
+        .value;
+
+
+    if(entered === savedPin){
+
+        document.getElementById("pinScreen")
+            .classList.remove("show");
+
+
+        document.getElementById("pinInput")
+            .value = "";
+
+    }
+    else{
+
+        alert("Wrong PIN.");
+
+
+        document.getElementById("pinInput")
+            .value = "";
+
+    }
+
+}
+
+
+/* ESCAPE */
+
+function escapeHTML(value){
+
+    return String(value)
+        .replace(/&/g,"&amp;")
+        .replace(/</g,"&lt;")
+        .replace(/>/g,"&gt;")
+        .replace(/"/g,"&quot;")
+        .replace(/'/g,"&#039;");
+
+}
+
+
+/*
+==================================================
+INITIAL
+==================================================
+*/
+
+if(
+    localStorage.getItem("darkMode") === "true"
+){
+
+    document.body.classList.add("dark");
+
+}
+
+/*
+Initial Type options
+Edit ke time saare options available honge.
+*/
+
+setTypeOptions("income");
+
+renderAll();
+
+</script>
+
+</body>
+</html>
